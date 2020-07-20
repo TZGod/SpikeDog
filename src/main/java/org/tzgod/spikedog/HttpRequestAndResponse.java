@@ -37,9 +37,6 @@ public class HttpRequestAndResponse {
         //从输入流中可以读取到浏览器发给我们的消息
         InputStream inputStream = socket.getInputStream();
 
-
-
-
         //-----读取浏览器请求的数据
         //用来存放input读取到的数据
         byte[] buffer = new byte[1024];

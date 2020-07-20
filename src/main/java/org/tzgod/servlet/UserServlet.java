@@ -1,4 +1,4 @@
-package org.tzgod.test;
+package org.tzgod.servlet;
 
 
 import org.tzgod.spikedog.HttpServlet;

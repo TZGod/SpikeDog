@@ -19,7 +19,7 @@ public class SpikedogServer {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, URISyntaxException {
 
-
+        //新建Spikedog服务器
         SpikedogServer spikedogServer = new SpikedogServer();
         //开始
         spikedogServer.start();
@@ -33,8 +33,6 @@ public class SpikedogServer {
             //每来一个请求都会有一个socket对象被创建
             //当没有请求的时候，accept方法会阻塞在此处
             final Socket socket = serverSocket.accept();
-            //每一个请求都给其分配一个线程进行操作
-//            new Thread(new RequestRunnable(socket,httpRequestAndResponse)).start();
             //从线程池中获取线程执行请求任务
             service.execute(new RequestRunnable(socket,httpRequestAndResponse));
         }
@@ -52,6 +50,7 @@ public class SpikedogServer {
             System.out.println("Spikedog start");
             System.out.println("Scan All Servlet");
 
+            //扫描Servlet
             SpikedogWebServletScan spikedogWebServletScan = new SpikedogWebServletScan();
             servletHashMap = spikedogWebServletScan.servletScan();
 
@@ -59,7 +58,7 @@ public class SpikedogServer {
 
 
             //创建了一个定长线程池，只有6个线程
-            service = Executors.newFixedThreadPool(100);
+            service = Executors.newFixedThreadPool(6);
 
 
 

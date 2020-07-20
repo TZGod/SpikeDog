@@ -22,13 +22,14 @@ public class SpikedogWebServletScan {
      */
     public HashMap<String, org.tzgod.spikedog.HttpServlet> servletScan() throws URISyntaxException, ClassNotFoundException, IllegalAccessException, InstantiationException, UriUnuniqueException {
         HashMap<String, org.tzgod.spikedog.HttpServlet> servletHashMap = new HashMap<String, org.tzgod.spikedog.HttpServlet>();
-        String basePackage = "com.qianfeng.test";
+        //获取项目所在的运行文件路径
+        String basePackage = "org.tzgod.servlet";
         String path = basePackage.replaceAll("\\.", "/");
         URL url = SpikedogWebServletScan.class.getResource("/");
         File file = new File(url.getPath()+path);
+        //遍历
         File[] files = file.listFiles();
         for (int i = 0,size=files.length; i < size; i++) {
-
             //文件
             if (files[i].isFile()) {
                 //所有的class文件
@@ -37,6 +38,7 @@ public class SpikedogWebServletScan {
                     String[] strings = filename.split("\\.");
                     String className = strings[0];
                     String allClassName = basePackage+"."+className;
+                    //反射获取注解
                     Class<?> aClass = Class.forName(allClassName);
                     WebServlet annotation = aClass.getAnnotation(WebServlet.class);
                     if (annotation != null) {

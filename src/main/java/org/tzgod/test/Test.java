@@ -1,4 +1,4 @@
-package org.tzgod.spikedog;
+package org.tzgod.test;
 
 import java.util.Date;
 
@@ -7,6 +7,7 @@ public class Test {
     public static void main(String[] args) {
         System.out.println(new Date());
 
+        //模拟前端传输http协议
         org.tzgod.spikedog.HttpProtocol httpProtocol = new org.tzgod.spikedog.HttpProtocol();
         String http = "GET /demo?name=zhangsan HTTP/1.1\n" +
                 "Host: localhost:8080\n" +

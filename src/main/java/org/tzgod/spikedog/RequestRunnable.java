@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.Socket;
 
 /**
- * 没来了一个用户请求都会创建一个新的线程进行操作处理
+ * 每来了一个用户请求都会创建一个新的线程进行操作处理
  */
 public class RequestRunnable implements Runnable {
 
