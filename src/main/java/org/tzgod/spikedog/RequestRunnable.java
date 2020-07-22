@@ -20,12 +20,12 @@ public class RequestRunnable implements Runnable {
     public void run() {
         System.out.println(">>"+Thread.currentThread().getName()+"::"+socket);
         try {
-            //分配一个线程去处理请求的工作
+            //分配一个线程去处理请求的工作并返回202
             httpRequestAndResponse.httpAccepted(socket);
-            //获取请求
+            //获取请求处理请求
             httpRequestAndResponse.request(socket);
             //给浏览器一个响应，http协议响应
-            //---响应
+            //---响应返回HelloWorld页面
             httpRequestAndResponse.response(socket);
         } catch (IOException e) {
             e.printStackTrace();

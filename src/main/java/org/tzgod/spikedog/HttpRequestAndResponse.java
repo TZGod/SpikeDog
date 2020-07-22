@@ -21,6 +21,7 @@ public class HttpRequestAndResponse {
      * @throws IOException
      */
     public void httpAccepted(Socket socket) throws IOException {
+        //获取输出流
         OutputStream outputStream = socket.getOutputStream();
         //服务器收到浏览器的请求之后，需要返回202，之后才能读取数据
         String begin = "HTTP/1.1 202 Accepted\n" +
@@ -28,6 +29,7 @@ public class HttpRequestAndResponse {
                 "Date: Mon, 27 Jul 2009 12:28:53 GMT\n" +
                 "Server: Apache\n";
         outputStream.write(begin.getBytes());
+        //强制性地将缓存中的数据发出去
         outputStream.flush();
     }
     /**
@@ -36,13 +38,11 @@ public class HttpRequestAndResponse {
     public void request(Socket socket) throws IOException {
         //从输入流中可以读取到浏览器发给我们的消息
         InputStream inputStream = socket.getInputStream();
-
         //-----读取浏览器请求的数据
         //用来存放input读取到的数据
         byte[] buffer = new byte[1024];
         //用来记录读取了多少个字节
         int len = 0;
-
         StringBuilder stringBuilder = new StringBuilder();
         //如果没有数据了，input会返回一个-1
         while (true) {
@@ -50,11 +50,8 @@ public class HttpRequestAndResponse {
 //                if (len == -1) {
 //                    break;
 //                }
-
             //浏览器如果不关闭，此处的流就会一直等待
-            System.out.println(new String(buffer,0,len));
             stringBuilder.append(new String(buffer,0,len));
-
             if (len < 1024) {
                 break;
             }
@@ -70,9 +67,6 @@ public class HttpRequestAndResponse {
             if ( httpServlet != null) {
                 httpServlet.doGet(); //接口回调
             }
-
-
-
         } else if ("Post".toUpperCase().equals(httpProtocol.getRequestMethod())){
             //Post请求
             if ( httpServlet != null) {

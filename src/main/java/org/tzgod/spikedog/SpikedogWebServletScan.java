@@ -9,11 +9,17 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.HashMap;
 
+/**
+ * @ClassName WebServlet
+ * @Description 扫描类 扫描Servlet层
+ * @Author TZGod
+ * @Version V1.0
+ **/
 public class SpikedogWebServletScan {
 
     /**
      * 加在所有的Servlet，并且保存到了Map中
-     * @return
+     * @return 
      * @throws URISyntaxException
      * @throws ClassNotFoundException
      * @throws IllegalAccessException

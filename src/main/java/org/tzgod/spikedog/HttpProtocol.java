@@ -18,7 +18,7 @@ public class HttpProtocol {
         this.requestMethod = requestMethod;
     }
 
-    public String getUrl() {
+    public String getUstringsrl() {
         return url;
     }
 

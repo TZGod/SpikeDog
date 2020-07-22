@@ -34,6 +34,8 @@ public class SpikedogServer {
             //当没有请求的时候，accept方法会阻塞在此处
             final Socket socket = serverSocket.accept();
             //从线程池中获取线程执行请求任务
+            //将socket,httpRequestAndResponse当前事例 注入new RequestRunnable
+            //通过run方法启用
             service.execute(new RequestRunnable(socket,httpRequestAndResponse));
         }
     }
@@ -54,6 +56,7 @@ public class SpikedogServer {
             SpikedogWebServletScan spikedogWebServletScan = new SpikedogWebServletScan();
             servletHashMap = spikedogWebServletScan.servletScan();
 
+            //结果servletHashMap注入new HttpRequestAndResponse事例
             httpRequestAndResponse=new HttpRequestAndResponse(servletHashMap);
 
 
